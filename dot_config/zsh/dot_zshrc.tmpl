@@ -3,7 +3,7 @@ export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
 autoload -Uz compinit
 compinit
 
-source $HOME/.config/zsh/plugins/xdg_home
+source $HOME/.config/zsh/plugins/xdg_paths
 source $HOME/.config/zsh/plugins/sheldon
 source $HOME/.config/zsh/plugins/oh-my-posh
 
@@ -12,17 +12,15 @@ export PATH="$PATH:/Users/ali.tayarani/.local/bin"
 export PATH="$PATH:/Users/alitayarani/.rbenv/shims:/Users/alitayarani/Library/Python/3.9/bin:/Users/alitayarani/go/bin:/bin:/sbin:/usr/local/MacGPG2/bin:/usr/local/bin:/usr/local/go/bin:/usr/sbin:/usr/bin"
 {{ end -}}
 
-{{- if eq .class "Personal" }}
+{{- if eq .class "Personal" -}}
 export ORGANIZE_CONFIG=$HOME/.config/organize.yaml
 {{ end -}}
-
-eval "$(oh-my-posh --init --shell zsh --config ~/.config/prompt/omp.yaml)"
 
 export GOPATH=$HOME/go
 export PATH=./Library/Python/3.8/bin:$PATH
 export PATH=$PATH:$GOPATH/bin
 
-export EDITOR=vim
+export EDITOR="idea -e --wait"
 
 alias gi='git-ignore'
 alias dsf='diff-so-fancy'

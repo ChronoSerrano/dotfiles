@@ -1,3 +1,0 @@
-export XDG_CONFIG_HOME=/Users/ali/.config
-export XDG_CACHE_HOME=/Users/ali/.cache
-export XDG_DATA_HOME=/Users/ali/.local/share

@@ -1,0 +1,44 @@
+{{- $ohmyzsh_remote := "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins" -}}
+
+{{- $ohmyzsh_plugins := (dict
+    "Common" (list "common-aliases" "github" "rbenv" "git" "ruby" "gcloud" "fzf")
+    "Work" (list "kubectl" "pyenv" "nvm")
+    "Personal" (list)
+) -}}
+
+{{- $plugins := (dict
+    "Common" (list
+               "zsh-users/zsh-syntax-highlighting" "caarlos0/zsh-open-pr" "zsh-users/zsh-autosuggestions"
+               "chrissicool/zsh-256color" "horosgrisa/autoenv" "zsh-users/zsh-history-substring-search"
+               "zsh-users/zsh-completions"   "mdumitru/fancy-ctrl-z" "3v1n0/zsh-bash-completions-fallback"
+               "MichaelAquilina/zsh-you-should-use" "juanrgon/yadm-zsh" "reegnz/jq-zsh-plugin"
+               "rtuin/zsh-case" "zshzoo/cd-ls" "b4b4r07/enhancd" "birdhackor/zsh-exa-ls-plugin"
+               "laggardkernel/git-ignore")
+    "Work" (list)
+    "Personal" (list)
+) -}}
+
+{{- $local_plugins := (dict
+    "Common" (list "clonetree" "history")
+    "Work" (list "worktree" "db_passgen" "gke_sandbox")
+    "Personal" (list)
+) -}}
+
+[plugins]
+{{ range $plugin := concat (list) (get $plugins "Common") (get $plugins .class) }}
+{{- $project_fields := split "/" $plugin }}
+{{- $project := $project_fields._1 }}
+[plugins.{{- $project -}}]
+github = "{{- $plugin -}}"
+{{ end }}
+
+{{- range $plugin := concat (list) (get $ohmyzsh_plugins "Common") (get $ohmyzsh_plugins .class) }}
+[plugins.{{- $plugin -}}]
+remote = "{{- $ohmyzsh_remote -}}/{{- $plugin -}}/{{- $plugin -}}.plugin.zsh"
+{{ end }}
+
+{{- range $plugin := concat (list) (get $local_plugins "Common") (get $local_plugins .class) }}
+[plugins.{{- $plugin -}}]
+local = "{{ $.chezmoi.homeDir }}/.config/zsh/plugins"
+use = ["{{- $plugin -}}"]
+{{ end }}

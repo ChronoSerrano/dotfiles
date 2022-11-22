@@ -3,3 +3,7 @@
 [data]
     class = {{ $class | quote }}
 
+encryption = "age"
+[age]
+    identity = "{{ $.chezmoi.homeDir }}/.config/sops/age/key.txt"
+    recipient = "age1wkpa9qnhpqw442eldt2yudez0e4j788f2f7nhlwv6j8f458qc4asqkva7c"
