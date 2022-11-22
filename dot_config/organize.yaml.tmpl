@@ -1,0 +1,91 @@
+{{ if eq .class "Personal" }}
+local: &local
+  - path: ~/Downloads
+
+personal:
+  - path: /Volume/Drive/100–199 Personal
+    exclude_dirs:
+      - "#recycle"
+
+business:
+  - path: /Volume/Drive/200–299 Kandor Holdings LLC
+    exclude_dirs:
+      - "#recycle"
+  - path: /Volume/Drive/300–399 285 Harvard 304 LLC
+    exclude_dirs:
+      - "#recycle"
+
+work:
+  - path: /Volume/Drive/400-499 Tapjoy
+    exclude_dirs:
+      - "#recycle"
+  - path: /Volume/Drive/500–599 Carta
+    exclude_dirs:
+      - "#recycle"
+  - path: /Volume/Drive/600–699 Imprivata
+    exclude_dirs:
+      - "#recycle"
+  - path: /Volume/Drive/700–799 Calm
+    exclude_dirs:
+      - "#recycle"
+
+all_locations: &all
+  - *local
+  - path: /Volumes/Drive
+    exclude_dirs:
+      - "#recycle"
+rules:
+  - locations: *all
+    name: "Downloaded PDFs"
+    enabled: false
+    subfolders: true
+    filters:
+      - extension: pdf
+    actions:
+      - echo: "Found PDF!"
+  - locations: *all
+    name: "Empty Directories"
+    subfolders: true
+    targets: dirs
+    filters:
+      - size: 0
+    actions:
+      - trash
+  - locations: *all
+    name: "Empty Files"
+    subfolders: true
+    filters:
+      - size: 0
+    actions:
+      - trash
+  - locations: *all
+    name: "Partial Downloads older than 30 days"
+    filters:
+      - extension:
+          - download
+          - crdownload
+          - part
+      - lastmodified:
+          days: 30
+          mode: older
+    actions:
+      - trash
+  - locations: *all
+    name: "Downloaded EPUBs older than 7 days"
+    filters:
+      - extension:
+          - epub
+      - lastmodified:
+          days: 7
+          mode: older
+    actions:
+      - trash
+  - locations: *all
+    name: "Duplicate Files"
+    subfolders: true
+    filters:
+      - duplicate
+    actions:
+      - confirm: "Delete {name}?"
+      - trash
+{{ end }}
