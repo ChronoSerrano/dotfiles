@@ -1,0 +1,9 @@
+
+- background: green
+  foreground: '#ffffff'
+  style: powerline
+  powerline_symbol: "\uE0B0"
+  type: git
+  properties:
+    fetch_status: true
+    template: ":: {{ .HEAD }}{{ .BranchStatus }}{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }} "

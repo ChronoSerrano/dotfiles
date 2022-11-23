@@ -1,0 +1,17 @@
+{{- $taps := list -}}
+{{- $common := (list "homebrew/core" "homebrew/cask" "jandedobbeleer/oh-my-posh" "espanso/espanso"
+"homebrew/cask-fonts" "buo/cask-upgrade" "homebrew/bundle" "doron-cohen/tap") -}}
+{{- $work := (list) -}}
+{{- $personal := (list) -}}
+
+{{- if eq .class "Work" -}}
+    {{- $taps = (concat $work $common | sortAlpha) -}}
+{{- else if eq .class "Personal" -}}
+    {{- $taps = (concat $personal $common | sortAlpha) -}}
+{{- end }}
+
+# taps
+{{- range $tap := $taps }}
+    tap {{ $tap | quote }}
+{{- end }}
+

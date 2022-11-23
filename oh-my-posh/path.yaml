@@ -1,0 +1,11 @@
+
+- background: '#ff479c'
+  foreground: '#ffffff'
+  powerline_symbol: "\ue0b0"
+  style: powerline
+  type: path
+  properties:
+    folder_separator_icon: " \ue0b1 "
+    home_icon: '~'
+    style: agnoster_full
+    template: " \uf74a  {{ .Path }} "

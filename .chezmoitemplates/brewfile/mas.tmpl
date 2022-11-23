@@ -1,0 +1,22 @@
+{{- $appStore := dict -}}
+{{- $common := (dict
+"Kindle" 405399194
+"GarageBand" 682658836
+"iMovie" 408981434
+"Keynote" 409183694
+"Numbers" 409203825
+"Pages" 409201541
+) -}}
+{{- $work := (dict) -}}
+{{- $personal := (dict) -}}
+
+{{- if eq .class "Work" -}}
+    {{- $appStore = (merge $work $common) -}}
+{{- else if eq .class "Personal" -}}
+    {{- $appStore = (merge $personal $common) -}}
+{{- end }}
+
+# mas install
+{{- range $key := (keys $appStore | sortAlpha) }}
+    mas {{$key | quote}}, id: {{get $appStore $key}}
+{{- end }}

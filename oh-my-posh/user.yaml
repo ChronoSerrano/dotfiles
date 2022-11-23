@@ -1,0 +1,8 @@
+
+- background: '#c386f1'
+  foreground: '#ffffff'
+  style: powerline
+  powerline_symbol: "\ue0b0"
+  type: session
+  properties:
+    template: ' {{ .UserName }} '

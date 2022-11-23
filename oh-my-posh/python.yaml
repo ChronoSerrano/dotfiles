@@ -1,0 +1,8 @@
+
+- foreground: '#4584b6'
+  style: plain
+  type: python
+  properties:
+    display_mode: context
+    fetch_virtual_env: true
+    template: "| \ue235 {{ .Venv }} "

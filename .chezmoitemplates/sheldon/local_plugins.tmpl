@@ -1,0 +1,17 @@
+{{- $plugins := list -}}
+{{- $common := (list "clonetree" "history" "homebrew") -}}
+{{- $work := (list "worktree" "db_passgen") -}}
+{{- $personal := (list) -}}
+
+{{- if eq .class "Work" -}}
+    {{- $plugins = (concat $work $common | sortAlpha) -}}
+{{- else if eq .class "Personal" -}}
+    {{- $plugins = (concat $personal $common | sortAlpha) -}}
+{{- end -}}
+
+
+{{- range $plugin := $plugins }}
+    [plugins.{{- $plugin -}}]
+    local = "{{ $.chezmoi.homeDir }}/.config/zsh/plugins"
+    use = ["{{- $plugin -}}"]
+{{ end }}

@@ -1,85 +1,19 @@
-{{- $segment_types := (dict
-"os" `
-  - foreground: cyan
-    background: black
-    style: powerline
-    type: os
-    template: '{{ if .WSL }}WSL at {{ end }} {{.Icon}} '
-    properties:
-        macos: 'MacOS'
-`
-"user" `
-  - background: '#c386f1'
-    foreground: '#ffffff'
-    style: powerline
-    powerline_symbol: "\ue0b0"
-    type: session
-    properties:
-      template: ' {{ .UserName }} '
-`
-"git" `
-  - background: green
-    foreground: '#ffffff'
-    style: powerline
-    powerline_symbol: "\uE0B0"
-    type: git
-    properties:
-      fetch_status: true
-      template: ":: {{ .HEAD }}{{ .BranchStatus }}{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }} "
-`
-"battery" `
-  - style: powerline
-    invert_powerline: true
-    type: battery
-    foreground_templates:
-      - '{{if eq "Charging" .State.String}}#4caf50{{end}}'
-      - '{{if eq "Discharging" .State.String}}#40c4ff{{end}}'
-      - '{{if eq "Full" .State.String}}#ff0000{{end}}'
-    properties:
-      charged_icon: "\uf00d  "
-      charging_icon: "\ue234 "
-      discharging_icon: "\ue231 "
-      template: "| {{ if not .Error }}{{ .Icon }}{{ .Percentage }}{{ end }}{{ .Error }} \uf295 "
-`
-"time" `
-  - style: plain
-    foreground: lightGreen
-    type: time
-    properties:
-      template: '| {{ .CurrentDate | date .Format }} '
-`
-"exit" `
-  - foreground: lightGreen
-    foreground_templates:
-      - '{{ if gt .Code 0 }}red{{ end }}'
-    style: powerline
-    type: exit
-    properties:
-      always_enabled: true
-    template: '➜ '
-`
-"path" `
-  - background: '#ff479c'
-    foreground: '#ffffff'
-    powerline_symbol: "\ue0b0"
-    style: powerline
-    type: path
-    properties:
-      folder_separator_icon: " \ue0b1 "
-      home_icon: '~'
-      style: agnoster_full
-      template: " \uf74a  {{ .Path }} "
-`
-)
--}}
+{{- includeTemplate "do-not-edit.tmpl" . }}
 
-{{- $segments := (dict
-    "Common" (dict
-        "first_left" (list "os" "user" "git")
-        "first_right" (list "battery" "time")
-        "second_left" (list "path")))
+{{- $first_left := list -}}
+{{- $first_right := list -}}
+{{- $second_left := list -}}
 
--}}
+{{- if eq .class "Work" -}}
+    {{- $first_left = (list "os" "user" "git") -}}
+    {{- $first_right = (list "node" "python" "battery" "time") -}}
+    {{- $second_left = (list "path") -}}
+{{- else if eq .class "Personal" -}}
+    {{- $first_left = (list "os" "user" "git") -}}
+    {{- $first_right = (list "battery" "time") -}}
+    {{- $second_left = (list "path") -}}
+{{- end -}}
+
 
 console_title_template: {{ "\"{{.Folder}}{{if .Root}} ::  {{.Shell}}\"" }}
 version: 2
@@ -89,24 +23,25 @@ blocks:
   - alignment: left
     type: prompt
     segments:
-      {{- range $segment := (get (get $segments "Common") "first_left") }}
-      {{- indent 2 (get $segment_types $segment) }}
+      {{- range $segment :=  $first_left }}
+      {{- (indent 4 (include (nospace (cat "oh-my-posh/" $segment ".yaml")))) }}
       {{- end }}
   - alignment: right
     type: prompt
     segments:
-      {{- range $segment := (get (get $segments "Common") "first_right") }}
-      {{- indent 2 (get $segment_types $segment) }}
+      {{- range $segment := $first_right }}
+      {{- (indent 4 (include (nospace (cat "oh-my-posh/" $segment ".yaml")))) }}
       {{- end }}
   - alignment: left
     type: prompt
     newline: true
     segments:
-      {{- range $segment := (get (get $segments "Common") "second_left") }}
-      {{- indent 2 (get $segment_types $segment) }}
+      {{- range $segment := $second_left }}
+      {{- (indent 4 (include (nospace (cat "oh-my-posh/" $segment ".yaml")))) }}
       {{- end }}
   - alignment: left
     newline: true
     type: prompt
     segments:
-      {{- indent 2 (get $segment_types "exit") }}
+      {{- (indent 4 (include "oh-my-posh/exit.yaml")) }}
+

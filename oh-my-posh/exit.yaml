@@ -1,0 +1,9 @@
+
+- foreground: lightGreen
+  foreground_templates:
+    - '{{ if gt .Code 0 }}red{{ end }}'
+  style: powerline
+  type: exit
+  properties:
+    always_enabled: true
+  template: '➜ '

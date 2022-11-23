@@ -1,0 +1,6 @@
+
+- style: plain
+  foreground: lightGreen
+  type: time
+  properties:
+    template: '| {{ .CurrentDate | date .Format }} '

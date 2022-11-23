@@ -1,0 +1,24 @@
+{{- $plugins := list -}}
+{{- $common := (list
+"zsh-users/zsh-syntax-highlighting" "caarlos0/zsh-open-pr" "zsh-users/zsh-autosuggestions"
+"chrissicool/zsh-256color" "horosgrisa/autoenv" "zsh-users/zsh-history-substring-search"
+"zsh-users/zsh-completions"   "mdumitru/fancy-ctrl-z" "3v1n0/zsh-bash-completions-fallback"
+"MichaelAquilina/zsh-you-should-use" "juanrgon/yadm-zsh" "reegnz/jq-zsh-plugin"
+"rtuin/zsh-case" "zshzoo/cd-ls" "b4b4r07/enhancd" "birdhackor/zsh-exa-ls-plugin"
+"laggardkernel/git-ignore") -}}
+{{- $work := (list) -}}
+{{- $personal := (list) -}}
+
+{{- if eq .class "Work" -}}
+    {{- $plugins = (concat $work $common | sortAlpha) -}}
+{{- else if eq .class "Personal" -}}
+    {{- $plugins = (concat $personal $common | sortAlpha) -}}
+{{- end -}}
+
+{{ range $plugin := $plugins }}
+    {{- $projectFields := split "/" $plugin }}
+    {{- $project := $projectFields._1 }}
+    [plugins.{{- $project -}}]
+    github = "{{- $plugin -}}"
+{{ end -}}
+
