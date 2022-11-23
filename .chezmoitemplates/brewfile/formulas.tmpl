@@ -1,9 +1,45 @@
 {{- $formulas := list -}}
-{{- $common := (list "bash" "coreutils" "fzf" "git" "git-filter-repo" "git-lfs" "gnupg" "jq" "mas" "organize-tool"
-"tealdeer" "tree" "sheldon" "vim" "vimpager" "oh-my-posh" "age" "xdg-ninja" "antidot"
-"chezmoi" "go" "diff-so-fancy") -}}
-{{- $work := (list) -}}
-{{- $personal := (list "tailscale" "sops") -}}
+
+{{- $common := (list
+"age"
+"antidot"
+"bash"
+"chezmoi"
+"coreutilsfzf"
+"diff-so-fancy"
+"git"
+"git-filter-repo"
+"git-lfs"
+"gnupg"
+"go"
+"jq"
+"mas"
+"oh-my-posh"
+"organize-tool"
+"sheldon"
+"tealdeer"
+"tree"
+"vim"
+"vimpager"
+"xdg-ninja"
+"font-fira-code-nerd-font"
+"font-fira-mono-nerd-font"
+"exa"
+"fzf"
+) -}}
+
+{{- $work := (list
+"aws-cdk"
+"aws-sso-util"
+"awscli"
+"awsume"
+"docutils"
+"node"
+) -}}
+{{- $personal := (list
+"sops"
+"tailscale"
+) -}}
 
 {{- if eq .class "Work" -}}
     {{- $formulas = (concat $work $common | sortAlpha) -}}
