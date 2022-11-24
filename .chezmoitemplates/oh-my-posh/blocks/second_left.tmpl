@@ -1,0 +1,15 @@
+{{- $segments := (list) -}}
+
+{{- if eq .class "Work" -}}
+    {{- $segments = (list "path") -}}
+{{- else if eq .class "Personal" -}}
+    {{- $segments = (list "path") -}}
+{{- end -}}
+
+- alignment: left
+  type: prompt
+  newline: true
+  segments:
+  {{- range $segment :=  $segments }}
+      {{- (indent 4 (includeTemplate (nospace (cat "oh-my-posh/" $segment ".yaml.tmpl")))) }}
+  {{- end }}

@@ -4,12 +4,15 @@ autoload -Uz compinit
 compinit
 
 source $HOME/.config/zsh/plugins/xdg_paths
-source $HOME/.config/zsh/plugins/sheldon
-source $HOME/.config/zsh/plugins/oh-my-posh
+source $XDG_CONFIG_HOME/zsh/plugins/sheldon
+source $XDG_CONFIG_HOME/zsh/plugins/oh-my-posh
+source $XDG_CONFIG_HOME/zsh/plugins/history
 
 {{ if eq .class "Work" -}}
 export PATH="$PATH:/Users/ali.tayarani/.local/bin"
 export PATH="$PATH:/Users/alitayarani/.rbenv/shims:/Users/alitayarani/Library/Python/3.9/bin:/Users/alitayarani/go/bin:/bin:/sbin:/usr/local/MacGPG2/bin:/usr/local/bin:/usr/local/go/bin:/usr/sbin:/usr/bin"
+export AWS_SHARED_CREDENTIALS_FILE="$XDG_CONFIG_HOME"/aws/credentials
+export AWS_CONFIG_FILE="$XDG_CONFIG_HOME"/aws/config
 {{ end -}}
 
 {{- if eq .class "Personal" -}}
@@ -25,6 +28,4 @@ export EDITOR="idea -e --wait"
 alias gi='git-ignore'
 alias dsf='diff-so-fancy'
 
-export AWS_SHARED_CREDENTIALS_FILE="$XDG_CONFIG_HOME"/aws/credentials
-export AWS_CONFIG_FILE="$XDG_CONFIG_HOME"/aws/config
 source $HOME/.config/zsh/.zshenv

@@ -1,0 +1,14 @@
+{{- $segments := (list) -}}
+
+{{- if eq .class "Work" -}}
+    {{- $segments = (list "node" "python" "battery" "time") -}}
+{{- else if eq .class "Personal" -}}
+    {{- $segments = (list "battery" "time") -}}
+{{- end -}}
+
+- alignment: right
+  type: prompt
+  segments:
+  {{- range $segment :=  $segments }}
+      {{- (indent 4 (includeTemplate (nospace (cat "oh-my-posh/" $segment ".yaml.tmpl")))) }}
+  {{- end }}

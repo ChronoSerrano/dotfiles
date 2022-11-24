@@ -1,47 +1,12 @@
 {{- includeTemplate "do-not-edit.tmpl" . }}
 
-{{- $first_left := list -}}
-{{- $first_right := list -}}
-{{- $second_left := list -}}
-
-{{- if eq .class "Work" -}}
-    {{- $first_left = (list "os" "user" "git" "aws") -}}
-    {{- $first_right = (list "node" "python" "battery" "time") -}}
-    {{- $second_left = (list "path") -}}
-{{- else if eq .class "Personal" -}}
-    {{- $first_left = (list "os" "user" "git") -}}
-    {{- $first_right = (list "battery" "time") -}}
-    {{- $second_left = (list "path") -}}
-{{- end }}
-
-
 console_title_template: {{ "\"{{.Folder}}{{if .Root}} ::  {{.Shell}}\"" }}
 version: 2
 final_space: true
 osc99: true
 blocks:
-  - alignment: left
-    type: prompt
-    segments:
-      {{- range $segment :=  $first_left }}
-      {{- (indent 4 (includeTemplate (nospace (cat "oh-my-posh/" $segment ".yaml.tmpl")))) }}
-      {{- end }}
-  - alignment: right
-    type: prompt
-    segments:
-      {{- range $segment := $first_right }}
-      {{- (indent 4 (includeTemplate (nospace (cat "oh-my-posh/" $segment ".yaml.tmpl")))) }}
-      {{- end }}
-  - alignment: left
-    type: prompt
-    newline: true
-    segments:
-      {{- range $segment := $second_left }}
-      {{- (indent 4 (includeTemplate (nospace (cat "oh-my-posh/" $segment ".yaml.tmpl")))) }}
-      {{- end }}
-  - alignment: left
-    newline: true
-    type: prompt
-    segments:
-      {{- (indent 4 (includeTemplate "oh-my-posh/exit.yaml.tmpl")) }}
+{{ includeTemplate "oh-my-posh/blocks/first_left.tmpl" . | indent 2}}
+{{ includeTemplate "oh-my-posh/blocks/first_right.tmpl" . | indent 2}}
+{{ includeTemplate "oh-my-posh/blocks/second_left.tmpl" . | indent 2}}
+{{ includeTemplate "oh-my-posh/blocks/exit.tmpl" . | indent 2}}
 
