@@ -1,6 +1,0 @@
-
-- foreground: '#6CA35E'
-  type: node
-  style: powerline
-  properties:
-    template: "| \ue718 {{ if .PackageManagerIcon }}{{ .PackageManagerIcon }} {{ end }}{{ .Full }} "
