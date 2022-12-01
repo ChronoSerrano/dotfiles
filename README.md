@@ -8,3 +8,14 @@ Ref: https://community.synology.com/enu/forum/1/post/153781
 
 ### Install ZSH
 Use synocommunity package without modules
+
+### GCC
+`brew instal gcc`
+
+### Setup .profile
+```
+# Set PATH, MANPATH, etc., for Homebrew.
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+export HOMEBREW_GIT_PATH=/usr/local/bin/git
+export HOMEBREW_TEMP=~/tmp
+```
