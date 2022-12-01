@@ -4,10 +4,6 @@ export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
 export PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:$PATH"
 {{ end }}
 
-{{ if eq .class "NAS" -}}
-export ZSH_DISABLE_COMPFIX=true
-{{ end -}}
-
 autoload -Uz compinit
 compinit
 
