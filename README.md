@@ -7,7 +7,7 @@
 Ref: https://community.synology.com/enu/forum/1/post/153781
 
 ### Install ZSH
-Use synocommunity package without modules
+`brew install zsh`
 
 ### GCC
 `brew install gcc`
