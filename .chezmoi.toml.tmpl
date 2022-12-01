@@ -1,6 +1,6 @@
 {{- $class := promptStringOnce . "class" "System Class" -}}
 
-{{- if eq .class "NAS" -}}
+{{- if eq $class "NAS" -}}
 scriptTempDir = "~/tmp"
 {{- end -}}
 
