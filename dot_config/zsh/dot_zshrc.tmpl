@@ -1,4 +1,12 @@
+{{ if .chezmoi.os "darwin" }}
 export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
+{{ else if .chezmoi.os "linux" }}
+export PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:$PATH"
+{{ end }}
+
+{{ if eq .class "NAS" -}}
+ZSH_DISABLE_COMPFIX=true
+{{ end -}}
 
 autoload -Uz compinit
 compinit
