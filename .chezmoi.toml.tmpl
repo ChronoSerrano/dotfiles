@@ -1,5 +1,10 @@
 {{- $class := promptStringOnce . "class" "System Class" -}}
 
+{{- if eq .class "NAS" -}}
+scriptTempDir = "~/tmp"
+{{- end -}}
+
+
 [data]
 class = {{ $class | quote }}
 
