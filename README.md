@@ -10,7 +10,7 @@ Ref: https://community.synology.com/enu/forum/1/post/153781
 Use synocommunity package without modules
 
 ### GCC
-`brew instal gcc`
+`brew install gcc`
 
 ### Setup .profile
 ```
