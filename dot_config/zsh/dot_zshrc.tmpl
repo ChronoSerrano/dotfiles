@@ -1,6 +1,6 @@
-{{ if .chezmoi.os "darwin" }}
+{{ if eq .chezmoi.os "darwin" }}
 export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
-{{ else if .chezmoi.os "linux" }}
+{{ else if eq .chezmoi.os "linux" }}
 export PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:$PATH"
 {{ end }}
 
