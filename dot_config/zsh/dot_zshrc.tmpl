@@ -5,7 +5,7 @@ export PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:$PAT
 {{ end }}
 
 {{ if eq .class "NAS" -}}
-ZSH_DISABLE_COMPFIX=true
+export ZSH_DISABLE_COMPFIX=true
 {{ end -}}
 
 autoload -Uz compinit
