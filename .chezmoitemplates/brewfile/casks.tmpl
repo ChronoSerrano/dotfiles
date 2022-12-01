@@ -1,7 +1,14 @@
 {{- $casks := list -}}
-{{- $common := (list "adobe-creative-cloud" "alfred" "authy" "caffeine" "devtoys" "flux" "gpg-suite-no-mail"
+{{- $common := list -}}
+
+{{- if eq .chezmoi.os "darwin" -}}
+{{- $common = (list "adobe-creative-cloud" "alfred" "authy" "caffeine" "devtoys" "flux" "gpg-suite-no-mail"
 "grammarly-desktop" "intellij-idea" "iterm2" "macupdater" "marvin" "obsidian" "unclutter"
 "zotero" "font-meslo-lg-nerd-font" "espanso" "krisp" "docker") -}}
+{{ else if eq .chezmoi.os "linux" -}}
+{{- $common = (list) -}}
+{{- end -}}
+
 {{- $work := (list "slack") -}}
 {{- $personal := (list "tailscale" "electorrent") -}}
 

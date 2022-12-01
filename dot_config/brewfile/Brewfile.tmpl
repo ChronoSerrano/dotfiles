@@ -2,4 +2,6 @@
 {{- includeTemplate "brewfile/taps.tmpl" . }}
 {{- includeTemplate "brewfile/casks.tmpl" .}}
 {{- includeTemplate "brewfile/formulas.tmpl" .}}
+{{- if eq .chezmoi.os "darwin" -}}
 {{- includeTemplate "brewfile/mas.tmpl" .}}
+{{- end -}}

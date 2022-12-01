@@ -40,11 +40,14 @@
 "sops"
 "tailscale"
 ) -}}
+{{- $nas := (list) -}}
 
 {{- if eq .class "Work" -}}
     {{- $formulas = (concat $work $common | sortAlpha) -}}
 {{- else if eq .class "Personal" -}}
     {{- $formulas = (concat $personal $common | sortAlpha) -}}
+{{- else if eq .class "NAS" -}}
+    {{- $formulas = (concat $nas $common | sortAlpha) -}}
 {{- end }}
 
 # formulas
