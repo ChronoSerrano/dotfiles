@@ -4,6 +4,8 @@
     {{- $segments = (list "node" "python" "battery" "time") -}}
 {{- else if eq .class "Personal" -}}
     {{- $segments = (list "battery" "time") -}}
+{{- else if eq .class "NAS" -}}
+    {{- $segments = (list "time") -}}
 {{- end -}}
 
 - alignment: right

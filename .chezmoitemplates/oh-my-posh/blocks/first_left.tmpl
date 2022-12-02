@@ -4,6 +4,8 @@
     {{- $segments = (list "os" "user" "git" "aws") -}}
 {{- else if eq .class "Personal" -}}
     {{- $segments = (list "os" "user" "git") -}}
+{{- else if eq .class "NAS" -}}
+    {{- $segments = (list "os" "user" "git") -}}
 {{- end -}}
 
 - alignment: left
