@@ -1,6 +1,8 @@
 {{- $formulas := list -}}
+{{- $common := list -}}
 
-{{- $common := (list
+{{- if eq .chezmoi.os "darwin" -}}
+{{- $common = (list
 "age"
 "antidot"
 "bash"
@@ -27,7 +29,18 @@
 "exa"
 "fzf"
 ) -}}
-
+{{ else if eq .chezmoi.os "linux" -}}
+{{- $common = (list
+"age"
+"bash"
+    "chezmoi"
+    "git"
+    "oh-my-posh"
+    "sheldon"
+    "xdg-ninja"
+    "exa"
+) -}}
+{{- end -}}
 {{- $work := (list
 "aws-cdk"
 "aws-sso-util"
