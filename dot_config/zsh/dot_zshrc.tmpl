@@ -1,7 +1,7 @@
 {{ if eq .chezmoi.os "darwin" }}
 export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
 {{ else if eq .chezmoi.os "linux" }}
-export PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:$PATH"
+export PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:/usr/local/bin:$PATH"
 {{ end }}
 
 autoload -Uz compinit
