@@ -27,8 +27,8 @@ export HOMEBREW_GIT_PATH=/usr/local/bin/git
 export HOMEBREW_TEMP=~/tmp
 ```
 
-### Install ZSH/GCC/Chezmoi
-`brew install zsh gcc chezmoi`
+### Install required packages
+`brew install zsh gcc chezmoi age`
 
 ### Setup Chezmoi
 `chezmoi init --apply ChronoSerrano`
