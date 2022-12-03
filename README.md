@@ -4,7 +4,20 @@
 
 ## Special Instructions for Synology NAS
 ### Setup homebrew
-Ref: https://community.synology.com/enu/forum/1/post/153781
+```bash
+#!/bin/bash
+
+cat << EOF > /usr/bin/ldd
+#/bin/sh
+echo "ldd 2.20"
+EOF
+chmod 0755 /usr/bin/ldd
+
+mkdir /home
+mount -o bind "/volume1/homes" /home
+```
+
+### Install git via synocommunity packages
 
 ### Install ZSH
 `brew install zsh`
