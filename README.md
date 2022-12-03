@@ -1,5 +1,6 @@
 # dotfiles
 
+## MacOS/MacBook
 `sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply ChronoSerrano`
 
 ## Special Instructions for Synology NAS
