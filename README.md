@@ -4,7 +4,7 @@
 `sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply ChronoSerrano`
 
 ## Linux
-`apt install age git`
+`apt install age git zsh`
 `sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply ChronoSerrano`
 
 ## Special Instructions for Synology NAS
