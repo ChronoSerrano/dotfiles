@@ -3,6 +3,10 @@
 ## MacOS/MacBook
 `sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply ChronoSerrano`
 
+## Linux
+`apt install age git`
+`sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply ChronoSerrano`
+
 ## Special Instructions for Synology NAS
 ### Install git via synocommunity packages
 ### Setup homebrew
